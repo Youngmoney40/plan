@@ -1,0 +1,425 @@
+<html>
+ <head>
+  <title>Connect</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+       margin: 0;
+       font-family: Arial, sans-serif;
+   }
+   .navbar {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       background-color: white;
+       padding: 10px 20px;
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   }
+   .navbar a {
+       text-decoration: none;
+       color: black;
+       margin: 0 10px;
+   }
+   .navbar .settings {
+       background-color: #166534;
+       color: white;
+       padding: 10px 20px;
+       border-radius: 20px;
+   }
+   .header {
+       background-image: url('images/desk.png');
+       background-size: cover;
+       background-position: center;
+       color: white;
+       text-align: left;
+       padding: 100px 0;
+       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+       padding-left: 50px;
+   }
+   
+   .content {
+       margin-left: 200;
+       margin-right: 200;
+       margin-top: 50;
+       margin-bottom: 100;
+       
+   }
+   .card {
+       background-color: #166534;
+       color: white;
+       padding: 20px;
+       border-radius: 10px;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 20px;
+       
+   }
+   .card img {
+       border-radius: 50%;
+       width: 50px;
+       height: 50px;
+   }
+   .fas {
+    color: white;
+    cursor: pointer;
+   }
+   .fab {
+        cursor: pointer;
+       position: fixed;
+       bottom: 2rem;
+       right: 2rem;
+       background-color: #166534;
+       color: white;
+       width: 4rem;
+       height: 4rem;
+       border-radius: 9999px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+   .fab:hover{
+        cursor: pointer;
+       position: fixed;
+       bottom: 2rem;
+       right: 2rem;
+       background-color: #0a8a3b;
+       color: white;
+       width: 4rem;
+       height: 4rem;
+       border-radius: 9999px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+  
+   footer {
+       background-color: black;
+       color: white;
+       padding: 1rem 0;
+       text-align: center;
+   }
+   footer nav a {
+       margin-right: 1rem;
+       color: white;
+       text-decoration: none;
+   }
+   footer nav a:hover {
+       text-decoration: underline;
+   }
+   .card-header {
+    background-color: #166534;
+        
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 20px;
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 10px; 
+        gap: 10px;
+        border-radius: 8px;
+    }
+    h2{
+        font-size: 27px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #ffffff;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    p{
+
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #ffffff;
+        margin-top: -15px;
+        font-size: 14;
+        color: rgb(221, 221, 221);
+
+    }
+    img{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .card-header-text {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        
+    }
+
+    .card-header-text h2 {
+        margin: 0; 
+        font-size: 6px; 
+    }
+
+    .card-header-text p {
+        margin: 0; 
+        font-size: 62px; 
+        color: #f0f0f0; 
+    }
+
+    .card-header img {
+        border-radius: 50%; /* Makes the image circular */
+        width: 40px; /* Sets the size of the image */
+        height: 40px;
+    }
+
+    footer {
+            background-color: black;
+            color: white;
+           
+            align-items: center;
+            align-self: center;
+        }
+        footer .container {
+            display: flex;
+           align-self: center;
+           justify-content: center;
+           align-items: center;
+           padding: 40px;
+          
+        }
+        footer nav a {
+            color: white;
+            margin-right: 16px;
+            text-decoration: none; 
+        
+        }
+        footer nav a:hover {
+            text-decoration: underline;
+
+        }
+.footerTerms{
+    background-color: black;
+    border-top-color: #999;
+    border-top-width: 0.6px;
+    border-top-style: solid;
+    justify-content: flex-end;
+    padding: 10px;
+    text-align: end;
+}
+.banner {
+    margin-top: -40px;
+        width: 100%;
+        height: 100vh; 
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.5), 
+            rgba(0, 0, 0, 0.5)
+            ),
+            url('./images/cc.png'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; /* Prevent repeating */
+        }
+        
+      
+        .banner h1{
+            font-size: 60px;
+            color: #ffffff;
+            position: relative; top: 45%; margin-left: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+        }
+
+        header {
+            background-color: white;
+            
+            
+            
+        }
+        header .container {
+            display: flex;
+           align-items: center;
+            align-self: center;
+            justify-content: center;
+            
+            padding: 16px 24px;
+        }
+        header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        header nav a:hover {
+            background-color: #166534;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+        header button {
+            background-color: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    
+  </style>
+ </head>
+ <body>
+  
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home/Schedule</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+               
+            </nav>
+       <div style="margin-left: 200;">
+            <a href="settings.html"><button>Settings</button></a>
+        </div>     
+          
+        </div>
+        
+    </header>
+  
+  <section class="banner">
+    <h1>Connect</h1>
+</section>
+
+
+  
+  <div class="content">
+
+   
+
+   
+
+   <div class="card-header">
+    
+
+   </div>
+  </div>
+  <!-- Floating Action Button -->
+  <div class="fab">
+    <a href="group.html">
+        <i class="fas fa-plus"> 
+        </i>
+    </a>
+    
+   
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+        <nav>
+            <a href="home.html">HOME</a>
+            <a href="note.html">Note</a>
+            <a href="to do list.html">To Do List</a>
+            <a href="connect.html">Connect</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+       
+    </div>
+    <div class="footerTerms">
+        <span>Terms & Condition</span>
+    </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+
+      
+        let groupsData = [];
+        
+        async function fetchData() {
+            const token = localStorage.getItem('accessToken');
+            console.log('token:', token);
+
+            if (!token) {
+                alert('No authentication token found. Please sign in.');
+                return;
+            }
+
+            try {
+                const apiUrl = 'https://eplan.edrive.ng/api/group/getgroup/';
+
+                const response = await axios.get(apiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.status === 200) {
+                    groupsData = response.data.reverse();
+                    console.log('Data fetched:', groupsData);
+                   
+                    displayConnects();
+                }
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+
+                if (error.response && error.response.status === 401) {
+                    alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'signin.html';
+                } else {
+                    alert('An error occurred while fetching data.');
+                }
+            }
+        }
+
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; 
+            const strTime = `${hours}:${formattedMinutes} ${ampm}`;
+            return strTime;
+          }
+        
+          function displayConnects() {
+    const contentContainer = document.querySelector('.content'); // Target the content div
+    contentContainer.innerHTML = ''; // Clear existing content
+
+    groupsData.forEach((group) => {
+        // Create the card header
+        const cardHeader = document.createElement('div');
+        cardHeader.classList.add('card-header');
+
+        // Create the text container
+        const textContainer = document.createElement('div');
+        
+        const title = document.createElement('h2');
+        title.textContent = group.name || 'Untitled Group';
+        textContainer.appendChild(title);
+
+        const time = document.createElement('p');
+        time.textContent = `${new Date(group.created_at).toLocaleDateString()} ${formatTime(group.created_at)}`;
+        textContainer.appendChild(time);
+
+        // Append text container to card header
+        cardHeader.appendChild(textContainer);
+
+        // Create and append the image
+        const img = document.createElement('img');
+        img.src = group.image || 'images/profile.png'; // Use group image or default
+        img.alt = 'Profile image';
+        cardHeader.appendChild(img);
+        
+
+        // Append the card header to the content container
+        contentContainer.appendChild(cardHeader);
+    });
+}
+
+        fetchData();      
+  </script>
+</body>
+</html>

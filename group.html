@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Group</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: white;
+        }
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+        }
+        header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        header nav a:hover {
+            background-color: #166534;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+        header button {
+            background-color: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Page Header */
+        .header {
+            background-color: #166534;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        .header .close {
+            position: absolute;
+            left: 50px;
+            top: 40px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+
+        /* Group Name Section */
+        .question-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .question-section .profile-pic {
+            width: 130px;
+            height: 130px;
+            background-color: #d3d3d3;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .question-section input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #166534;
+            font-size: 18px;
+
+        }
+        .question-section .mic {
+            margin-left: 20px;
+            font-size: 25px;
+            color: #a3a2a2;
+        }
+
+        /* Permissions Section */
+        .permissions {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            margin: 30px;
+            border-top: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .permissions .title {
+            font-size: 18px;
+        
+        }
+        .permissions .settings-icon {
+            font-size: 24px;
+            color: #0c0c0c;
+        }
+
+        /* Add Members Section */
+        .add-member {
+            display: flex;
+            align-items: center;
+            margin: 30px;
+        }
+        .add-member .add-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #4d4d4d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .add-member input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+        }
+        #search-results {
+            position: absolute;
+            background: white;
+            border: 1px solid #d3d3d3;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 100;
+            width: 500px;
+            margin-top: 20px;
+
+        }
+        #selected-members-list li {
+            background-color: #166534;
+            color: white;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .result-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .result-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Submit Button */
+        .submit {
+            position: relative;
+            background-color: #166534;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 20px auto;
+            margin-bottom: 20px;
+            left: 500px;
+            cursor: pointer;
+        }
+        .submit:hover{
+            background-color: #23a354;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 20px;
+           
+            
+        }
+        footer nav a {
+            color: white;
+            margin-right: 16px;
+            text-decoration: none;
+            
+            
+        }
+        footer nav a:hover {
+            text-decoration: underline;
+        }
+        .footerTerms{
+        background-color: black;
+        border-top-color: #999;
+        border-top-width: 0.6px;
+        border-top-style: solid;
+        justify-content: flex-end;
+        padding: 10px;
+        text-align: end;
+        margin-top: 30px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home/Schedule</a>
+                <a href="note.html">Note</a>
+                <a href="to-do-list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+            </nav>
+            <a href="settings.html"><button>Settings</button></a>
+        </div>
+    </header>
+    <div class="header">
+        <div   class="close"><a style="color: #FFFFFF; text-decoration: none;" href="connect.html">&times;</a></div>
+        <h1>Create Group</h1>
+    </div>
+    <div class="content">
+        <!-- Group Name Input -->
+        <div class="question-section">
+            <div class="profile-pic"></div>
+            <input type="text" id="group-name" placeholder="Group Name" required>
+            <div class="mic"><i class="fas fa-microphone"></i></div>
+        </div>
+        <!-- Permissions Section -->
+        <div class="permissions">
+            <div class="title">Group Permissions</div>
+            <div class="settings-icon"><i class="fas fa-cog"></i></div>
+        </div>
+        <!-- Add Members -->
+        <div class="add-member">
+            <div class="add-icon"><i class="fas fa-plus"></i></div>
+            <input type="text" id="add-member" placeholder="Input member name to add" required>
+            <ul id="selected-members-list" style="list-style-type: none;"></ul>
+            <div id="search-results" style="display: none;"></div>
+        </div>
+    </div>
+    <!-- Submit Button -->
+    <div onclick="addNote()" class="submit"><i class="fas fa-check"></i></div>
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="note.html">Note</a>
+                <a href="to-do-list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+        </div>
+        <div class="footerTerms">
+            <span>Terms & Condition</span>
+        </div>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const selectedMembers = new Set();
+
+/**
+ * Handles group creation by sending the selected members and group title to the server.
+ */
+async function addNote() {
+    const groupTitle = document.getElementById('group-name').value.trim();
+
+    if (selectedMembers.size > 0 && groupTitle) {
+        console.log('Creating Group - Title:', groupTitle, 'Members:', Array.from(selectedMembers));
+
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('Authentication error: Please log in again.');
+                return;
+            }
+
+            const response = await axios.post('https://eplan.edrive.ng/api/groups/create/add_user/', {
+                name: groupTitle,
+                members: Array.from(selectedMembers),
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.status === 201) {
+                alert('Group successfully created.');
+                window.location.href = 'connect.html'; // Redirect to Connect page
+            } else {
+                alert('Failed to create group. Please try again.');
+                console.error('Unexpected Response:', response);
+            }
+        } catch (error) {
+            console.error('Error creating group:', error.response ? error.response.data : error.message);
+            alert('An error occurred while creating the group. Please try again later.');
+        }
+    } else {
+        alert('Please provide a group title and add at least one member.');
+    }
+}
+
+/**
+ * Fetches users based on the search query and displays them in the results container.
+ */
+async function searchUsers() {
+    const searchQuery = document.getElementById('add-member').value.trim();
+    const resultsContainer = document.getElementById('search-results');
+
+    if (searchQuery) {
+        console.log('Searching Users - Query:', searchQuery);
+
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('Authentication error: Please log in again.');
+                return;
+            }
+
+            const response = await axios.get(`https://eplan.edrive.ng/api/groups/searchuser/?query=${searchQuery}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+
+            // Display results if users are found
+            if (response.data && response.data.length > 0) {
+                resultsContainer.style.display = 'block';
+                response.data.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.textContent = user.username;
+                    userDiv.classList.add('result-item');
+
+                    // Handle user selection
+                    userDiv.addEventListener('click', function () {
+                        if (!selectedMembers.has(user.id)) {
+                            selectedMembers.add(user.id);
+                            updateSelectedMembersList(user.username);
+                        }
+                        userDiv.remove();
+                        if (resultsContainer.childNodes.length === 0) {
+                            resultsContainer.style.display = 'none';
+                        }
+                    });
+
+                    resultsContainer.appendChild(userDiv);
+                });
+            } else {
+                console.log('No users found for the query:', searchQuery);
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            alert('An error occurred while fetching users. Please try again later.');
+        }
+    } else {
+        resultsContainer.style.display = 'none';
+    }
+}
+
+/**
+ * Updates the selected members list visually.
+ * @param {string} username - The username to add to the list.
+ */
+function updateSelectedMembersList(username) {
+    const list = document.getElementById('selected-members-list');
+    const li = document.createElement('li');
+    li.textContent = username;
+    list.appendChild(li);
+}
+
+// Attach event listener to search input for real-time user search
+document.getElementById('add-member').addEventListener('input', searchUsers);
+
+    </script>
+</html>

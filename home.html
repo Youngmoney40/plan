@@ -1,0 +1,1447 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2d3748;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: white;
+              
+        }
+        header .container {
+            display: flex;
+           align-items: center;
+            align-self: center;
+            justify-content: center;
+            
+            padding: 16px 24px;
+        }
+        header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            font-size: 20px;
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        header nav a:hover {
+            background-color: #166534;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+        header button {
+            background-color: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        main {
+            background-color: rgb(255, 255, 255);
+        
+        }
+        main section.relative {
+            position: relative;
+        }
+        main section.relative img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        main section.relative h1 {
+            position:absolute;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            justify-content: left;
+            display: flex;
+            text-shadow: #2d3748;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        main .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        /*CFI99*/
+            .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+       
+    }
+
+    .search-bar input {
+        flex-grow: 1;
+        padding:18px 16px;
+        border: 1.5px solid #d4d4d4;
+        border-radius: 30px 0 0 30px;
+        /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); */
+       
+    }
+
+    .search-bar button {
+        background-color: #166534;
+        color: white;
+        padding: 18px 16px;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        cursor: pointer;
+        /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); */
+    }
+
+    .search-bar button:hover {
+        background-color: #2f855a;
+    }
+    /* Add this to your existing CSS */
+    .search-bar input:focus {
+        outline: 2px solid #17563B;
+        box-shadow: 0 0 5px rgba(56, 161, 105, 0.3);
+    }
+
+/* Optional: Add a "no results" message */
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    display: none;
+}
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .section-title h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 22px;
+   
+    
+}
+
+
+.cards .card {
+    background-color: #166534;
+    color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+   padding-bottom: 20px;
+   padding-top: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.cards .card:hover{
+    box-shadow: 0 0 5px rgba(42, 218, 124, 0.3);
+    cursor: pointer;
+    background-color: #15633B;
+}
+.card button{
+    background: none;
+    border: none;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+        .cards .card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-direction: row;
+            
+        }
+        .cards .card .card-header i {
+            cursor: pointer;
+        }
+        .cards .card .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+        .cards .card .card-footer img {
+            border-radius: 50%;
+        }
+        .add-button {
+            display: flex;
+            justify-content: flex-end;
+            align-self: self-end;
+
+        }
+        .add-button button {
+            background-color: #166534;
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 10%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+        
+
+    #scheduleForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+           
+        }
+
+        #scheduleForm label {
+            font-weight: bold;
+        }
+
+        #scheduleForm input,
+        #scheduleForm textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #scheduleForm button {
+            background-color: #38a169;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #scheduleForm button:hover {
+            background-color: #166534;
+        }
+
+        #deleteSchedule {
+            background-color: #e53e3e !important;
+        }
+
+        #deleteSchedule:hover {
+            background-color: #c53030 !important;
+        }
+
+        /* Modal Background -----------------------------------------------------------------------------*/
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        /* Modal Content */
+        .modal {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 90%; 
+            overflow-y: scroll; 
+            -webkit-overflow-scrolling: touch; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+       
+        .modal::-webkit-scrollbar {
+            width: 8px; 
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background-color: #ccc; 
+            border-radius: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb:hover {
+            background-color: #999; 
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+
+        .modal label {
+            font-weight: 600;
+            margin-top: 10px;
+            color: #333;
+            display: block;
+        }
+
+        .modal input[type="text"],
+        .modal input[type="date"],
+        .modal input[type="time"],
+        .modal select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        /* Flex Row Styling */
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .input-row div {
+            flex: 1;
+        }
+
+        /* Member Styling */
+        .add-member-input {
+            margin-bottom: 10px;
+        }
+
+        .member-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .button-row button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button-row button.close {
+            background-color: #dc3545;
+        }
+
+        .button-row button:not(.close) {
+            background-color: #126826;
+        }
+
+        /* Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-content button {
+            padding: 8px 16px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #45a049;
+        }
+        .result-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .result-item:hover {
+            background-color: #f0f0f0;
+        }
+        .fas{
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 20px;
+            
+        }
+        #selected-members-list li{
+            background-color: #45a049;
+            padding: 7;
+            color: white;
+        }
+        #selected-members-list2 li{
+            background-color: #45a049;
+            padding: 7;
+            color: white;
+        }
+        .meetingDetails{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .meetingTime{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 50px;
+           
+            justify-self: start;
+        }
+        .meetingRow{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+        }
+        .meetingRow h3{
+            font-size: 20;
+
+        }
+        .meetingRow p{
+            margin-top: -15px;
+            color: #ccc;
+            font-size: small;
+        }
+        .meetingImg{
+            border-radius: 50px;
+
+        }
+        .meetingDateee{
+            margin-left: 90px;
+            
+        }
+        .topheader{
+            background-color: #eee;
+            padding: 20px;
+        }
+        /* General container style */
+.timezone-container {
+  display: flex; 
+  justify-content: center;
+  
+
+  padding: 10px; 
+  color: white; 
+  font-family: Arial, sans-serif; 
+  align-self: center;
+}
+
+/* Individual timezone style */
+.timezone {
+  padding: 10px 10px; 
+  border-radius: 5px; 
+  background-color: #166534; 
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 40px;
+  width: 100px;
+  justify-content: center;
+  text-align: center;
+  font-family: sans-serif;
+}
+.timezone h4{
+    margin-top: -0px;
+}
+.timezone-container p{
+    font-size: 30px;
+    color: #333;
+    width: 30px;
+    height: 30px;
+    margin-top: -0px;
+}
+.searchtext{
+    font-size: 20px;
+    
+}
+footer {
+            background-color: black;
+            color: white;
+           
+            align-items: center;
+            align-self: center;
+        }
+        footer .container {
+            display: flex;
+           align-self: center;
+           justify-content: center;
+           align-items: center;
+           padding: 40px;
+          
+        }
+        footer nav a {
+            color: white;
+            margin-right: 16px;
+            text-decoration: none; 
+        
+        }
+        footer nav a:hover {
+            text-decoration: underline;
+
+        }
+.footerTerms{
+    background-color: black;
+    border-top-color: #999;
+    border-top-width: 0.6px;
+    border-top-style: solid;
+    justify-content: flex-end;
+    padding: 10px;
+    text-align: end;
+}
+.banner {
+    margin-top: -40px;
+        width: 100%;
+        height: 70vh; 
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.5), 
+            rgba(0, 0, 0, 0.5)
+            ),
+            url('./images/sc.png'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; /* Prevent repeating */
+        }
+        
+      
+        .banner h1{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 50px;
+            color: #ffffff;
+            position: relative; top: 25%; margin-left: 40px;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home/Schedule</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+                <a href="signin.html">
+                   <img src="images/images.png" width="20" height="20">   Sign Out</a>
+               
+            </nav>
+       <div style="margin-left: 200;">
+            <a href="settings.html"><button>Settings</button></a>
+        </div>     
+          
+        </div>
+        
+    </header>
+    <main>
+        
+        <section class="banner">
+            <h1>Schedule</h1>
+        </section>
+        <div class="topheader">
+            <div class="timezone-container">
+                <div class="timezone">Texas: 
+                    <h4>08:00 PM</h4>
+                </div>
+                <p>....</p>
+                <div class="timezone">01:31 PM
+                    <h4>Madrid</h4>
+                </div>
+                <p>....</p>
+                <div class="timezone">05:31 PM
+                    <h4>Monaco</h4>
+                </div>
+              </div>
+              
+                <div class="search-bar">
+                    <input type="text" placeholder="Search schedule..." id="search">
+                    <button class="searchtext" onclick="searchMeeting()"><i class="fas fa-search"></i> Search</button>
+                </div>
+        </div>
+        <section class="container">
+          <!-- Modified timezone div -->
+        
+
+            <div class="section-title">
+                <h2 id="current-date"></h2>
+                <h2>Today</h2>
+            </div>
+            <div class="cards"></div>
+            <div class="cards2"></div>
+            <div class="add-button">
+                <button onclick="openModal()"><i class="fas fa-plus"></i></button>
+            </div>
+            
+    
+            <!--================== Modal Background for creating new meeting ==================================-->
+            <div class="modal-background" id="modal-background">
+                <div class="modal">
+                    <h2>Add New Meeting</h2>
+                    
+                    <!-- Start of Form -->
+                    <form onsubmit="return addNote(event)">
+            
+                        
+                        <label for="t-title">Title</label>
+                        <input type="text" id="t-title" name="title" placeholder="Enter Title" required>
+            
+                        
+                        <label for="t-date">Date</label>
+                        <input type="date" name="date" id="t-date" required>
+            
+                       
+                        <div class="input-row">
+                            <div>
+                                <label for="start-time">Start Time</label>
+                                <input type="time" name="starttime" id="start-time" required>
+                            </div>
+                            <div>
+                                <label for="end-time">End Time</label>
+                                <input type="time" name="endtime" id="end-time" required>
+                            </div>
+                        </div>
+            
+                      
+                        <div class="input-row">
+                            <div>
+                                <label for="t-duration">Duration</label>
+                                <select name="duration" id="t-duration" required>
+                                    <option value="" disabled selected>Select duration</option>
+                                    <option value="15 minutes">15 minutes</option>
+                                    <option value="30 minutes">30 minutes</option>
+                                    <option value="45 minutes">45 minutes</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="t-type">Type</label>
+                                <select name="type" id="t-type" required>
+                                    <option value="" disabled selected>Select type</option>
+                                    <option value="In person">In person</option>
+                                    <option value="Phone call">Phone call</option>
+                                </select>
+                            </div>
+                        </div>
+            
+                       
+                        <label for="t-description">Description</label>
+                        <input type="text" name="description" id="t-description" placeholder="Enter description" required>
+            
+                       
+                        <label for="add-member">Add Members</label>
+                        <input type="text" class="add-member-input" id="add-member" placeholder="+ Add member" required>
+                        <ul id="selected-members-list" class="member-list"></ul>
+                        <div id="search-results" style="display: none;"></div> 
+            
+                       
+                        <div class="button-row">
+                            <button class="close" type="button" onclick="closeModal()">Cancel</button>
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
+                    <!-- End of Form -->
+            
+                </div>
+            </div>
+            <!--====================== Modal Background for update  meeting ========================================-->
+            <div class="modal-background" id="modal-background2">
+                <div class="modal">
+                    <h2>Update Schedule Meeting</h2>
+                    
+                    <!-- Start of Form -->
+                    <form onsubmit="return addNote(event)">
+            
+                        
+                        <label for="t-title">Title</label>
+                        <input type="text" id="t-title2" name="title" placeholder="Enter Title" required>
+            
+                        
+                        <label for="t-date">Date</label>
+                        <input type="date" name="date" id="t-date2" required>
+            
+                       
+                        <div class="input-row">
+                            <div>
+                                <label for="start-time">Start Time</label>
+                                <input type="time" name="starttime" id="start-time2" required>
+                            </div>
+                            <div>
+                                <label for="end-time">End Time</label>
+                                <input type="time" name="endtime" id="end-time2" required>
+                            </div>
+                        </div>
+            
+                      
+                        <div class="input-row">
+                            <div>
+                                <label for="t-duration">Duration</label>
+                                <select name="duration" id="t-duration2" required>
+                                    <option value="" disabled selected>Select duration</option>
+                                    <option value="15 minutes">15 minutes</option>
+                                    <option value="30 minutes">30 minutes</option>
+                                    <option value="45 minutes">45 minutes</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="t-type">Type</label>
+                                <select name="type" id="t-type2" required>
+                                    <option value="" disabled selected>Select type</option>
+                                    <option value="In person">In person</option>
+                                    <option value="Phone call">Phone call</option>
+                                </select>
+                            </div>
+                        </div>
+            
+                       
+                        <label for="t-description">Description</label>
+                        <input type="text" name="description" id="t-description2" placeholder="Enter description" required>
+            
+                       
+                        <label for="add-member">Add Members</label>
+                        <input type="text" class="add-member-input" id="add-member2" placeholder="+ Add member" required>
+                        <ul id="selected-members-list2" class="member-list"></ul>
+                        <div id="search-results2" style="display: none;"></div> 
+            
+                       
+                        <div class="button-row">
+                            <button class="close" type="button" onclick="closeModal2()">Cancel</button>
+                            <button onclick="updateMeeting()" type="submit">update</button>
+                        </div>
+                    </form>
+                    <!-- End of Form -->
+            
+                </div>
+            </div>
+            
+        </section>
+        <!----------------- Success Popup Alert ---------->
+        <div id="successPopup" class="popup-overlay">
+            <div class="popup-content"><h2>Success!</h2><p>Meeting was created successfully.</p><button onclick="closePopup()">OK</button></div>
+        </div>
+        <!----------------- Success Popup Alert for update ---------->
+        <div id="successPopup2" class="popup-overlay">
+            <div class="popup-content"><h2>Success!</h2><p>Schedule Meeting was updated successfully.</p><button onclick="closePopup()">OK</button></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="home.html">HOME</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+           
+        </div>
+        <div class="footerTerms">
+            <span>Terms & Condition</span>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        function getCurrentDateFormatted() {
+            const now = new Date();
+            const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const weekdayName = weekdays[now.getDay()];
+            const dayOfMonth = now.getDate();
+            return `${weekdayName} ${dayOfMonth}`;
+        }
+
+        const currentDateElement = document.getElementById('current-date');
+        currentDateElement.textContent = getCurrentDateFormatted();
+    </script>
+
+    <script>
+        function timeAgo(dateString) {
+            const now = new Date();
+        
+            let date;
+            if (dateString.length === 10) {
+                
+                date = new Date(dateString); 
+            } else {
+                
+                date = new Date(dateString);
+            }
+        
+            // Normalize the date to the start of the day
+            date.setHours(0, 0, 0, 0);
+        
+            
+            if (isNaN(date)) {
+                console.error(`Invalid date: ${dateString}`);
+                return 'Invalid date';
+            }
+        
+            // Calculating difference in seconds
+            const seconds = Math.floor((now - date) / 1000);
+        
+            const intervals = [
+                { label: 'year', seconds: 31536000 },
+                { label: 'month', seconds: 2592000 },
+                { label: 'week', seconds: 604800 },
+                { label: 'day', seconds: 86400 },
+                { label: 'hour', seconds: 3600 },
+                { label: 'minute', seconds: 60 },
+                { label: 'second', seconds: 1 },
+            ];
+        
+            for (const interval of intervals) {
+                const count = Math.floor(seconds / interval.seconds);
+                if (count > 0) {
+                    return `${count} ${interval.label}${count > 1 ? 's' : ''} ago`;
+                }
+            }
+        
+            return 'now';
+        }
+        
+          function formatTime(isoString) {
+            const date = new Date(isoString);
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; 
+            const strTime = `${hours}:${formattedMinutes} ${ampm}`;
+            return strTime;
+          }
+    
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //  schedule action process
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+           
+               
+                    let meetingsData = [];
+                
+                    
+                    async function fetchData() {
+                        const token = localStorage.getItem('accessToken');
+                        console.log('token:', token);
+                
+                        if (!token) {
+                            alert('No authentication token found. Please sign in.');
+                            return;
+                        }
+                
+                        try {
+                            const apiUrl = 'https://eplan.edrive.ng/api/meeting/one-of-meeting/get/';
+                
+                            const response = await axios.get(apiUrl, {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+                
+                            if (response.status === 200) {
+
+                                meetingsData = response.data.reverse();    
+                                // display meeting the data   ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+                                displayMeetings();
+
+                                
+                            }else{
+
+                                console.log('No Meeting data available:'); 
+                            }
+                
+                        } catch (error) {
+                            console.error('Error fetching data:', error);
+                
+                            if (error.response && error.response.status === 401) {
+                                alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                                localStorage.removeItem('authToken');
+                                window.location.href = 'signin.html';
+                            } else {
+                                alert('An error occurred while fetching data.');
+                            }
+                        }
+                    }
+
+                    function displayMeetings() {
+                        const cardsContainer = document.querySelector('.cards'); 
+                        cardsContainer.innerHTML = '';  
+
+                        if (meetingsData.length === 0) {
+                         
+                            cardsContainer.innerHTML = `
+                                <div style="margin-left:180"> 
+                                    
+                                     <img style="width: 900;height:500" src="./images/eplan.jpg" alt="Desk workspace background image">
+                                    
+                                </div>
+                            `;
+                        } else {
+                          
+                            meetingsData.forEach(meeting => {
+                                // Create a card for each meeting
+                                const card = document.createElement('div');
+                                card.classList.add('card');
+                    
+                                // Card Header (Time and Edit Button)
+                                const cardHeader = document.createElement('div');
+                                cardHeader.classList.add('card-headere');
+                                cardHeader.innerHTML = `
+                                    <div class="meetingRow">
+                                        
+                                        <div class="meetingTime">
+                                            <span>${formatTime(meeting.starttime)} -</span>
+                                            <span>${formatTime(meeting.endtime)}</span>
+                                        </div>
+
+                                        <div class="meetingTitle">
+                                            <h3>${meeting.meetingname}</h3>
+                                            <p>${meeting.description}</p>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="meetingDetails">
+                                    <div>
+                                        <button onclick="getMeetingId('${meeting.meeting_id}')"><i class="fas fa-pen"></i></button>
+                                        
+                                         <span class="meetingDateee">${meeting.meeting_date}</span>
+                                    </div>
+                                    <img class="meetingImg" src="images/profile.png" alt="Profile image" width="30" height="30">
+                                    </div>
+                                `;
+                                card.appendChild(cardHeader);
+                    
+                               
+                    
+                                
+                    
+                                // Append the card to the container
+                                cardsContainer.appendChild(card);
+                            });
+                        }  
+                    }
+                    fetchData();  
+                    
+                    let selectedMeetingId;
+
+                   
+                    function getMeetingId(meetingId) {
+                        selectedMeetingId = meetingId; 
+                        console.log('Clicked Meeting ID:', selectedMeetingId); 
+                        openModal2(meetingId)}
+
+                    
+
+                    // [[[[[[[[[[[[[[[[[[[[[[[[  update meeting ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+                    const selectedMembers2 = new Set();
+
+
+
+// Define a global variable to store the CSRF token
+// Define a global variable to store the CSRF token
+let csrftoken = null;
+
+// Fetch the CSRF token from the API
+fetch('https://eplan.edrive.ng/api/cookies/')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        csrftoken = data.csrf_token;  // Store the CSRF token globally
+        console.log('New CSRF Token:', csrftoken);
+        // Now, `csrftoken` is available for use in subsequent requests
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    });
+
+// Later in your code, use the global `csrftoken` variable in your `axios` request
+async function updateMeeting() {
+    if (selectedMeetingId) {
+        console.log('Meeting ID:', selectedMeetingId);
+
+        const handleNull = (value) => {
+            return value ? value : 'null';
+        };
+
+        const meetingTitle = document.getElementById('t-title2').value;
+        const date = document.getElementById('t-date2').value;
+        const startTime = document.getElementById('start-time2').value;
+        const endTime = document.getElementById('end-time2').value;
+        const duration = document.getElementById('t-duration2').value;
+        const description = document.getElementById('t-description2').value;
+        const type = document.getElementById('t-type2').value;
+
+        if (selectedMembers2.size > 0 && csrftoken) {  // Check if CSRF token is set
+            try {
+                const csrftokenn = csrftoken;
+                console.log('generated cookies', csrftoken);
+                const token = localStorage.getItem('accessToken');
+
+                console.log('CSRF Token:', csrftoken);
+                console.log('Access Token:', token);
+                console.log('Payload:', {
+                    cookies: csrftoken,
+                    meetingname: meetingTitle,
+                    starttime: startTime,
+                    endtime: endTime,
+                    meeting_date: date,
+                    duration: duration,
+                    location: type,
+                    description: description,
+                    emails: Array.from(selectedMembers2),
+                    additionalinfo: handleNull(description),
+                });
+
+                const response = await axios.put(`https://eplan.edrive.ng/api/meeting/${selectedMeetingId}/`, {
+                    meetingname: meetingTitle,
+                    starttime: startTime,
+                    endtime: endTime,
+                    meeting_date: date,
+                    duration: duration,
+                    location: type,
+                    description: description,
+                    emails: Array.from(selectedMembers2),
+                    additionalinfo: handleNull(description),
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                      
+                    },
+                });
+
+                if (response.status === 200) {
+                    showPopup2();
+                } else {
+                    console.error('Unexpected Response:', response);
+                    alert('Failed to update meeting. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error updating meeting:', error.response ? error.response.data : error.message);
+            }
+        } else {
+            alert('Please add at least one member or ensure CSRF token is set.');
+        }
+    } else {
+        console.error('No meeting ID found');
+        alert('No meeting ID found');
+    }
+}
+
+
+
+       
+   
+       document.getElementById('add-member2').addEventListener('input', async function () {
+           const searchQuery = this.value;
+           const resultsContainer = document.getElementById('search-results2');
+   
+           if (searchQuery) {
+               console.log('Search Query:', searchQuery);
+               try {
+                   const token = localStorage.getItem('accessToken');
+                   const response = await axios.get(`https://eplan.edrive.ng/api/users/search-email/?query=${searchQuery}`, {
+                       headers: {
+                           'Authorization': `Bearer ${token}`,
+                       },
+                   });
+   
+                   resultsContainer.innerHTML = '';
+                   resultsContainer.style.display = 'none';
+   
+                   if (response.data && response.data.length > 0) {
+                       resultsContainer.style.display = 'block';
+                       response.data.forEach(user => {
+                           const userDiv = document.createElement('div');
+                           userDiv.textContent = user.email;
+                           userDiv.classList.add('result-item');
+   
+                           userDiv.addEventListener('click', function () {
+                               if (!selectedMembers2.has(user.email)) {
+                                   selectedMembers2.add(user.email); 
+                                   updateSelectedMembersList2(); 
+                               }
+                               this.parentNode.removeChild(this);
+                               if (resultsContainer.childNodes.length === 0) {
+                                   resultsContainer.style.display = 'none';
+                               }
+                           });
+   
+                           resultsContainer.appendChild(userDiv);
+                       });
+                   }
+               } catch (error) {
+                   console.error('Error fetching users:', error);
+               }
+           } else {
+               resultsContainer.style.display = 'none';
+           }
+       });
+   
+       function updateSelectedMembersList2() {
+           const list2 = document.getElementById('selected-members-list2');
+           list2.innerHTML = '';
+           selectedMembers2.forEach(member => {
+               const li2 = document.createElement('li');
+               li2.textContent = member;
+               list2.appendChild(li2);
+           });
+       }            
+
+    </script>
+
+    <script>
+
+        // Open Modal
+        function openModal() {
+            document.getElementById('modal-background').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('modal-background').style.display = 'none';
+        }
+        // Open Modal 2
+        function openModal2() {
+            document.getElementById('modal-background2').style.display = 'flex';
+        }
+
+        // Close Modal 2
+        function closeModal2() {
+            document.getElementById('modal-background2').style.display = 'none';
+        }
+
+       async function addTask()  {
+            const taskTitle = document.getElementById('task-title').value;
+            const taskDate = document.getElementById('task-date').value;
+            const taskTime = document.getElementById('task-time').value;
+            const taskType = document.getElementById('task-type').value;
+           
+
+            if (!taskTitle || !taskDate || !taskTime || !taskType) {
+               console.log('')
+               alert('All field are required') 
+                        
+            } else {
+
+                const taskData = {
+
+                    t_title: taskTitle,
+                    t_task_type: taskType,
+                    t_task_date: taskDate,
+                    t_task_time:taskTime,
+                    
+                };
+
+                try {
+
+                    const token = localStorage.getItem('accessToken');
+                    console.log('token:', token);
+                    const response = await axios.post('https://eplan.edrive.ng/api/myTask/', taskData, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+    
+                    if (response.status === 201) {
+                       showPopup()
+                        window.location.href = 'to do list.html';
+                    } else {
+                        alert('Failed to create task. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error creating task:', error);
+                    alert('There was an error creating the task. Please try again.');
+                }
+
+                console.log('task details', taskTime, taskDate, taskTitle, taskType)
+                alert("task complete");
+                closeModal();
+            }
+        }
+
+       /////////////////////////////////////////////////////////////////////////////
+        // search meeting
+        ///////////////////////////////////////////
+        async function searchMeeting() {
+            const performsearch = document.getElementById('search').value;
+            const token = localStorage.getItem('accessToken');
+            
+            if (!token) {
+                alert('No authentication token found. Please sign in.');
+                return;
+            }
+
+            if (performsearch) {
+                console.log('Search result:', performsearch);
+                try {
+                    const apiUrl = `https://eplan.edrive.ng/api/oneoffmeeting/search-meeting/?q=${performsearch}`;
+                    const response = await axios.get(apiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.status === 200) {
+                        const meetingsData = response.data; 
+                        console.log('Schedule Meeting:', meetingsData); 
+                        displayMeetingsearch(meetingsData);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    if (error.response && error.response.status === 401) {
+                        alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'signin.html';
+                    } else {
+                        alert('An error occurred while fetching data.');
+                    }
+                }
+            } else {
+                console.log('No note available');
+            }
+        }
+
+        function displayMeetingsearch(meetingsData) {
+            const cardsContainer = document.querySelector('.cards');
+            cardsContainer.innerHTML = '';  
+
+            // Checking if there are meetings to display
+            if (!meetingsData.length) {
+                const noResults = document.createElement('p');
+                noResults.textContent = "No meetings found for the search term.";
+                cardsContainer.appendChild(noResults);
+                return;
+            }
+
+            // Iterate over the meetings data and create HTML structure
+            meetingsData.forEach(meeting => {
+                                // Create a card for each meeting
+                                const card = document.createElement('div');
+                                card.classList.add('card');
+                    
+                                // Card Header (Time and Edit Button)
+                                const cardHeader = document.createElement('div');
+                                cardHeader.classList.add('card-headere');
+                                cardHeader.innerHTML = `
+                                    <div class="meetingRow">
+                                        
+                                        <div class="meetingTime">
+                                            <span>${formatTime(meeting.starttime)} -</span>
+                                            <span>${formatTime(meeting.endtime)}</span>
+                                        </div>
+
+                                        <div class="meetingTitle">
+                                            <h3>${meeting.meetingname}</h3>
+                                            <p>${meeting.description}</p>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="meetingDetails">
+                                    <div class="meetingEditDetaiils>
+                                        <button onclick="getMeetingId('${meeting.meeting_id}')"><i class="fas fa-pen"></i></button>
+                                        
+                                         <span class="meetingDateee">${meeting.meeting_date}</span>
+                                    </div>
+                                    <img class="meetingImg" src="images/profile.png" alt="Profile image" width="30" height="30">
+                                    </div>
+                                `;
+                                card.appendChild(cardHeader);
+                    
+                               
+                    
+                                
+                    
+                                // Append the card to the container
+                                cardsContainer.appendChild(card);
+                            });
+        }
+    </script>
+
+    
+    <script>
+
+         // show the success popup after meeting created
+         function showPopup() {
+            document.getElementById('successPopup').style.display = 'block';
+        }
+         function showPopup2() {
+            document.getElementById('successPopup2').style.display = 'block';
+        }
+
+        
+        function closePopup() {
+            document.getElementById('successPopup').style.display = 'none';
+            window.location.href = 'home.html'; 
+        }
+
+
+        const selectedMembers = new Set(); 
+    
+        async function addNote(event) {
+            event.preventDefault();
+        
+            const handleNull = (value) => {
+                return value ? value : 'null';
+            };
+        
+            const meetingTitle = document.getElementById('t-title').value;
+            const date = document.getElementById('t-date').value;
+            const startTime = document.getElementById('start-time').value;
+            const endTime = document.getElementById('end-time').value;
+            const duration = document.getElementById('t-duration').value;
+            const description = document.getElementById('t-description').value;
+            const type = document.getElementById('t-type').value;
+        
+            if (selectedMembers.size > 0) {
+                try {
+                    const token = localStorage.getItem('accessToken');
+                    const response = await axios.post('https://eplan.edrive.ng/api/createoneoffmeeting/', {
+                        meetingname: meetingTitle,
+                        starttime: startTime,
+                        endtime: endTime,
+                        meeting_date: date,
+                        duration: duration,
+                        location: type,
+                        description: description,
+                        emails: Array.from(selectedMembers),
+                        additionalinfo: handleNull(),
+                    }, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    });
+        
+                    if (response.status === 201) {
+                        showPopup();
+                    } else {
+                        console.error('Unexpected Response:', response);
+                        alert('Failed to create meeting. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error creating meeting:', error.response ? error.response.data : error.message);
+                }
+            } else {
+                //alert('Please add at least one member');
+            }
+        }
+        
+    
+        document.getElementById('add-member').addEventListener('input', async function () {
+            const searchQuery = this.value;
+            const resultsContainer = document.getElementById('search-results');
+    
+            if (searchQuery) {
+                console.log('Search Query:', searchQuery);
+                try {
+                    const token = localStorage.getItem('accessToken');
+                    const response = await axios.get(`https://eplan.edrive.ng/api/users/search-email/?query=${searchQuery}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    });
+    
+                    resultsContainer.innerHTML = '';
+                    resultsContainer.style.display = 'none';
+    
+                    if (response.data && response.data.length > 0) {
+                        resultsContainer.style.display = 'block';
+                        response.data.forEach(user => {
+                            const userDiv = document.createElement('div');
+                            userDiv.textContent = user.email;
+                            userDiv.classList.add('result-item');
+    
+                            userDiv.addEventListener('click', function () {
+                                if (!selectedMembers.has(user.email)) {
+                                    selectedMembers.add(user.email); 
+                                    updateSelectedMembersList(); 
+                                }
+                                this.parentNode.removeChild(this);
+                                if (resultsContainer.childNodes.length === 0) {
+                                    resultsContainer.style.display = 'none';
+                                }
+                            });
+    
+                            resultsContainer.appendChild(userDiv);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error fetching users:', error);
+                }
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        });
+    
+        function updateSelectedMembersList() {
+            const list = document.getElementById('selected-members-list');
+            list.innerHTML = '';
+            selectedMembers.forEach(member => {
+                const li = document.createElement('li');
+                li.textContent = member;
+                list.appendChild(li);
+            });
+        }
+
+
+       
+    </script>
+    
+</body>
+</html>
+

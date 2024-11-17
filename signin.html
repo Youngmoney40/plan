@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>User Authentication</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <img src="images/Sign.png" alt="Sign">
+            <div class="text-container">
+                <button><h1 id="signup-btn" class="active" onclick="showSignUp()">Sign Up</h1></button>
+                <span><button><h1 id="signin-btn" onclick="showSignIn()">Sign In</h1></button></span>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div id="loading" class="loading hidden"><img style="margin-top: 20px;" src="images/Loading_icon.gif" width="150" height="100" alt="loading"></div>
+            <div class="form-container" id="sign-up-form">
+                <h2 style="margin-bottom: 14px;">Sign Up</h2>
+                <p>
+                    Fill in your details to create an account</p>
+                <form id="signup-form">
+                    <!-- <label for="fullname">Full Name</label> -->
+                    <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                    <span class="error" id="fullname-error"></span>
+
+                    <!-- <label for="username">Username</label> -->
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <span class="error" id="username-error"></span>
+            
+                    <!-- <label for="email">Email Address</label> -->
+                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                    <span class="error" id="email-error"></span>
+            
+                    <!-- <label for="password">Password</label> -->
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <span class="error" id="password-error"></span>
+            
+                    <!-- <label for="confirm-password">Confirm Password</label> -->
+                    <div class="password-container">
+                        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <span class="error" id="confirm-password-error"></span>
+            
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms-checkbox" required>
+                        <span>I agree to the <a href="#" class="toggle-link">Terms and Conditions</a></span>
+                    </label>
+                    <span class="error" id="terms-error"></span>
+            
+                    <button style="font-size: 16px;font-weight: 600;" id="signup-btn" class="active" type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container hidden" id="sign-in-form">
+                <h2 style="margin-bottom: 15px;">Sign In</h2>
+                <p>Enter your credentials to access your account.</p>
+                <form id="signin-form">
+                    <!-- <label for="username-signin">Username</label> -->
+                    <input type="text" id="username-signin" placeholder="Enter your username" required>
+                    
+                    <!-- <label for="password-signin">Password</label> -->
+                    <div class="password-container">
+                        <input type="password" id="password-signin" placeholder="Enter your password" required>
+                    </div>
+                
+                    <label style="margin-top: 10px;" class="checkbox-label">
+                        <input type="checkbox" id="remember-me-checkbox">
+                        <span>Keep me logged in</span>
+                    </label>
+                
+                    <button style="font-size: 16px;font-weight: 600;" type="submit">Sign In</button>
+                </form>
+                
+                <div style="margin-top: 20px;" class="space">
+                    <span><a href="#" class="toggle-link">Forgot password?</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        ///////////////////////////////////////////////////////////
+        // Sign-Up Process
+        ////////////////////////////////////////////////////////////
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearErrors();
+            
+            const fullName = document.getElementById('fullname').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const termsCheckbox = document.getElementById('terms-checkbox').checked;
+            
+            let isValid = true;
+        
+            // Validation Logic
+            if (!fullName) {
+                showError('fullname', 'Full name is required.');
+                isValid = false;
+            }
+            if (!username) {
+                showError('username', 'Username is required.');
+                isValid = false;
+            }
+            if (!email) {
+                showError('email', 'Please provide a valid email address.');
+                isValid = false;
+            }
+            if (!password) {
+                showError('password', 'Password is required.');
+                isValid = false;
+            }
+            if (password !== confirmPassword) {
+                showError('confirm-password', 'Passwords do not match.');
+                isValid = false;
+            }
+            if (!termsCheckbox) {
+                showError('terms', 'You must agree to the Terms and Conditions.');
+                isValid = false;
+            }
+        
+            // If validation passes, submit data
+            if (isValid) {
+                const apiUrl = 'https://eplan.edrive.ng/api/registerUser/';
+                const data = {
+                    firstname: fullName,
+                    username: username,
+                    email: email,
+                    password: password,
+                };
+
+                document.getElementById('loading').classList.remove('hidden');
+                
+                axios.post(apiUrl, data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function (response) {
+                    document.getElementById('loading').classList.add('hidden');
+                    if (response.status === 201) {
+                        alert('Sign Up successful! Please sign in with your new account.');
+                        document.getElementById('signup-form').reset();  // Reset form
+                        showSignIn();  
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error during sign-up:', error);
+                    alert('There was an issue with the sign-up process.');
+                });
+            }
+        });
+
+        ///////////////////////////////////////////////////////////
+        // Sign-In Process
+        ////////////////////////////////////////////////////////////
+        document.getElementById('signin-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            clearErrors();
+            
+            const username = document.getElementById('username-signin').value;
+            const password = document.getElementById('password-signin').value;
+        
+            let isValid = true;
+        
+            if (!username) {
+                showError('username', 'Username is required.');
+                isValid = false;
+            }
+            if (!password) {
+                showError('password-signin', 'Password is required.');
+                isValid = false;
+            }
+        
+            if (isValid) {
+                const loginUrl = 'https://eplan.edrive.ng/api/loginUser/';
+                const data = {
+                    username: username,
+                    password: password
+                };
+
+                document.getElementById('loading').classList.remove('hidden');
+        
+                try {
+                    const response = await axios.post(loginUrl, data, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+        
+                    if (response.status === 200) {
+                        document.getElementById('loading').classList.add('hidden');
+                        const { access_token, refresh, user } = response.data;
+                        localStorage.setItem('accessToken', access_token);
+                        localStorage.setItem('refreshToken', refresh);
+                        localStorage.setItem('user', JSON.stringify(user));
+                        window.location.href = 'home.html';
+                    } else {
+                        alert('Invalid credentials, please try again.');
+                    }
+        
+                } catch (error) {
+                    console.error('Error during sign-in:', error);
+                    alert('There was an issue with the sign-in process. please complete the form ');
+                }
+            }
+        });
+
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId + '-error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+        
+        function clearErrors() {
+            const errorElements = document.getElementsByClassName('error');
+            for (let element of errorElements) {
+                element.textContent = '';
+                element.style.display = 'none';
+            }
+        }
+        
+        function showSignUp() {
+            document.getElementById('sign-up-form').classList.remove('hidden');
+            document.getElementById('sign-in-form').classList.add('hidden');
+            document.getElementById('signup-btn').classList.add('active');
+            document.getElementById('signin-btn').classList.remove('active');
+        }
+    
+        function showSignIn() {
+            document.getElementById('sign-up-form').classList.add('hidden');
+            document.getElementById('sign-in-form').classList.remove('hidden');
+            document.getElementById('signup-btn').classList.remove('active');
+            document.getElementById('signin-btn').classList.add('active');
+        }
+    </script>
+</body>
+</html>

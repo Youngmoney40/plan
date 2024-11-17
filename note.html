@@ -1,0 +1,1286 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ecebeb;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: white;
+            
+            
+            
+        }
+        header .container {
+            display: flex;
+           align-items: center;
+            align-self: center;
+            justify-content: center;
+            
+            padding: 16px 24px;
+        }
+        header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        header nav a:hover {
+            background-color: #166534;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+        header button {
+            background-color: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .header-content nav a {
+            margin-right: 1rem;
+            color: #4b5563;
+            text-decoration: none;
+            font-size: large;
+        }
+        .header-content nav a:hover {
+            color: #1f2937;
+        }
+        .header-content button {
+            background-color: #047857;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+        }
+        .hero {
+            position: relative;
+        }
+        .hero img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+      
+        /*CFI99*/
+        .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        
+       
+    }
+
+    .search-bar input {
+        flex-grow: 1;
+        padding:18px 16px;
+        border: 1.5px solid #d4d4d4;
+        border-radius: 30px 0 0 30px;
+        box-shadow: 4px 4px 6px rgba(10, 40, 0, 0.12);
+       
+    }
+
+    .search-bar button {
+        background-color: #166534;
+        color: white;
+        padding: 18px 16px;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        cursor: pointer;
+        /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); */
+    }
+
+    .search-bar button:hover {
+        background-color: #2f855a;
+    }
+    /* Add this to your existing CSS */
+    .search-bar input:focus {
+        outline: 2px solid #17563B;
+        box-shadow: 0 0 5px rgba(56, 161, 105, 0.3);
+    }
+        .main-content {
+            padding: 1rem 0;
+        }
+        .main-content h2, .main-content h3 {
+            margin-bottom: 1rem;
+        }
+        .notes-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+}
+
+.note-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    scroll-snap-align: start;
+    border-color: #f0f0f0;
+    border-width: 0.4;
+    border-style: solid;
+}
+
+.note-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-bottom-color: #d1d0d0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.note-content {
+    list-style-type: disc;
+   color: #777;
+    margin-bottom: 1rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.note-timestamp {
+    font-size: 0.8rem;
+    color: #777;
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* For better scrolling on touch devices */
+@media (pointer: coarse) {
+    .notes-container {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+        .recently-captured {
+            background-color: rgb(255, 255, 255);
+            padding: 1.5rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 2px 4px rgba(0, 05, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 70px;
+            
+            
+        }
+        .recently-captured a {
+            margin: 0 1rem;
+            color: #4b5563;
+            text-decoration: none;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .recently-captured a.active {
+            color: #047857;
+            border-bottom: 2px solid #047857;
+        }
+        .recently-captured .icon {
+            background-color: #047857;
+            color: white;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+        }
+        .recently-captured button {
+            background-color: #047857;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #047857;
+            color: white;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        footer {
+            background-color: black;
+            color: white;
+           
+            align-items: center;
+            align-self: center;
+        }
+        footer .container {
+            display: flex;
+           align-self: center;
+           justify-content: center;
+           align-items: center;
+           padding: 40px;
+          
+        }
+        footer nav a {
+            color: white;
+            margin-right: 16px;
+            text-decoration: none; 
+        
+        }
+        footer nav a:hover {
+            text-decoration: underline;
+
+        }
+        .footerTerms{
+            background-color: black;
+            border-top-color: #999;
+            border-top-width: 0.6px;
+            border-top-style: solid;
+            justify-content: flex-end;
+            padding: 10px;
+            text-align: end;
+        }
+
+         /* Add Task Button +++++++++++++++++++++++++++++++++++++++++*/
+         .add-task-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        /* Modal Background */
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .modal h2 {
+            margin-top: 0;
+        }
+        .modal input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .modal button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal .close {
+            background-color: #dc3545;
+            margin-top: 10px;
+        }
+
+            .modal label {
+                display: block;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                text-align: left;
+                font-size: 14px;
+                color: #333;
+            }
+            .modal input[type="text"], 
+            .modal input[type="date"], 
+            .modal input[type="time"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            .modal button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .modal button.close {
+                background-color: #dc3545;
+                color: white;
+            }
+             /* Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .popup-content button {
+            padding: 8px 16px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #07860d;
+            color: white;
+            cursor: pointer;
+        
+        }
+
+        .popup-content button:hover {
+            background-color: #45a049;
+        }
+        .cancelPopBTN button{
+            background-color: #dc3545;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .note-image {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+/*======== Tab Bar Styling ======================================*/
+    .tab-bar {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+        background-color: white;
+    }
+
+    .tab-link {
+        flex: 1;
+        padding: 10px;
+        cursor: pointer;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        transition: color 0.3s;
+        color: #000;
+    }
+    .fas{
+        font-size: 14px;
+    }
+    .searchtext{
+        font-size: 14px;
+    }
+
+    .tab-link:hover {
+        color: #007bff;
+    }
+
+    .tab-link.active {
+        border-bottom: 3px solid #28a745; 
+        color: #333;
+        font-weight: bold;
+        
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    #documentContainer p{
+        background-color: rgb(255, 255, 255);
+        padding: 5px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: start;
+    }
+    #documentContainer p :hover{
+        background-color: #008812;
+        padding: 10px;
+        color: #f3f4f6;
+        border-radius: 10;
+    }
+    #audioContainer p{
+        background-color: rgb(255, 255, 255);
+        padding: 5px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: start;
+    }
+    #audioContainer p :hover{
+        background-color: #008812;
+        padding: 10px;
+        color: #f3f4f6;
+        border-radius: 10;
+    } 
+    .containeer{
+        background-color: #007bff;
+    }
+    .organizeContent{
+        justify-content: center;
+        align-self: center;
+        align-items: center;
+        text-align: center;
+
+    }
+    .banner {
+        margin-top: -40px;
+        width: 100%;
+        height: 80vh; 
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.5), 
+            rgba(0, 0, 0, 0.5)
+            ),
+            url('images/note.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; /* Prevent repeating */
+        }
+        
+      
+        .banner h1{
+            font-size: 50px;
+            color: #ffffff;
+            position: relative; top: 45%; margin-left: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home/Schedule</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+               
+            </nav>
+       <div style="margin-left: 200;">
+            <a href="settings.html"><button>Settings</button></a>
+        </div>     
+          
+        </div>
+        
+    </header>
+
+    <section class="banner">
+        <h1>Notes</h1>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div style="display: flex; flex-direction: row; align-items: center; " class="search-bar">
+            <input type="text" id="search" name="search" placeholder="Search">
+            <button class="searchtext" onclick="searchNote()"><i class="fas fa-search"></i> Search</button>
+            <div style="margin-left: 20px;">
+                <i style="color: #166534; font-size: 25;" class="fas fa-tags "></i>
+            <i style="color: #166534; font-size: 25; margin-left: 20px;" class="fas fa-calendar-alt "></i>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <h2 style="font-family: 'Times New Roman', Times, serif;font-size: 27;">Pinned</h2>
+            <h3>Others</h3>
+            <div class="notes-container">
+                <div class="note-card">
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Recently Captured Section -->
+
+    <div style="padding: 70px;background-color: #f5f5f5;" class="containeer">
+        <div  class="recently-captured">
+            <h2 style=" margin-right: 900px;">Recently Captured</h2>
+    
+            <!-- Tab Bar Navigation =========================================-->
+            <div class="tab-bar">
+                <button style="background-color: white;color:#000" class="tab-link active" onclick="showTabContent('images')">Images</button>
+                <button style="background-color: white;color:black" class="tab-link" onclick="showTabContent('documents')">Documents</button>
+                <button style="background-color: white;color:black" class="tab-link" onclick="showTabContent('sketchs')">Sketch</button>
+                <button style="background-color: white;color:#000" class="tab-link" onclick="showTabContent('documents')">Emails</button>
+                <button style="background-color: white;color:#000" class="tab-link" onclick="showTabContent('videos')">Videos</button>
+                <button style="background-color: white;color:#000" class="tab-link" onclick="showTabContent('audio')">Audio</button>
+            </div>
+    
+            <!-- Content Areas========================== -->
+            <div id="images" class="tab-content active">
+                <div id="imageContainer" class="image-container"></div>
+            </div>
+            <div id="documents" class="tab-content">
+                <div id="documentContainer" class="document-container"></div>
+            </div>
+            <div id="sketchs" class="tab-content">
+                <div id="sketchContainer" class="image-container"></div>
+            </div>
+
+            <div id="documents" class="tab-content">
+                <div id="documentContainer" class="document-container"></div>
+            </div>
+            <div id="videos" class="tab-content">
+                <div> 
+                    <div class="icon">
+                    <i class="fas fa-star"></i>
+                    </div>
+                    <p>Keep images, receipts, and records in one place.</p>
+                    <button style="cursor:pointer" onclick="showPopup()">Get started</button>
+                </div>
+            </div>
+
+            <div id="audio" class="tab-content">
+                <div id="audioContainer" class="audio-container"></div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    
+    <!-- Modal Structure ============================-->
+    <div class="modal-background" id="modal-background">
+        <div class="modal">
+            <h2>Add New Note</h2>
+        
+            <label for="task-title">Title</label>
+            <input type="text" id="note-title" name="title" placeholder="Enter Title" required="">
+        
+            <label  for="task-type">Description</label>
+            <input type="text" name="type" id="note-description" placeholder="Enter description" required>
+
+            <label for="task-type">Note Type</label>
+            <input type="text" name="type" id="note-type" placeholder="e.g personal, or work" required="">
+        
+            <button onclick="addNote()">Save Note</button>
+            <button class="close" onclick="closeModal()">Cancel</button>
+        </div>
+        
+    </div>
+
+      <!----------------- Success Popup Alert ---------->
+      <div id="successPopup" class="popup-overlay">
+        <div class="popup-content">
+            <img style="width: 500;height:300" src="./images/eplan.jpg" alt="Desk workspace background image">
+            <h4>Access all your recent captures—images, documents, and more—on the go! For the best experience, switch to our mobile app. Download now to keep everything at your fingertips!</h4>
+            
+
+            
+            <button style="background-color: #d9091e;" onclick="closePopup()">Cancel</button>
+            <button>
+                <a style="color: white;" href="https://play.google.com/store/apps?hl=en">
+                    Download app now
+                </a>
+                </button>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="openModal()">
+        <i class="fas fa-plus"> </i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="home.html">HOME</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+           
+        </div>
+        <div class="footerTerms">
+            <span>Terms & Condition</span>
+        </div>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        function showTabContent(tabId) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let content of tabContents) {
+                content.classList.remove('active');
+            }
+        
+            // Remove active class from all tab links
+            const tabLinks = document.getElementsByClassName('tab-link');
+            for (let link of tabLinks) {
+                link.classList.remove('active');
+            }
+        
+            // Show the selected tab content and add active class to the clicked tab link
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+
+
+        function timeAgo(dateString) {
+            const now = new Date();
+            const date = new Date(dateString);
+            const seconds = Math.floor((now - date) / 1000);
+          
+            const intervals = [
+                { label: 'year', seconds: 31536000 },
+                { label: 'month', seconds: 2592000 },
+                { label: 'week', seconds: 604800 },
+                { label: 'day', seconds: 86400 },
+                { label: 'hour', seconds: 3600 },
+                { label: 'minute', seconds: 60 },
+                { label: 'second', seconds: 1 },
+            ];
+          
+            for (let i = 0; i < intervals.length; i++) {
+                const interval = intervals[i];
+                const count = Math.floor(seconds / interval.seconds);
+                if (count > 0) {
+                    return `${count} ${interval.label}${count > 1 ? 's' : ''} ago`;
+                }
+            }
+          
+            return 'now';
+          }
+
+          function formatTime(isoString) {
+            const date = new Date(isoString);
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if needed
+            const strTime = `${hours}:${formattedMinutes} ${ampm}`;
+            return strTime;
+          }
+
+          ////////////////////////////////////////////////////////////////////////////////
+          //
+          // search 
+          //
+          ////////////////////////////////////////////////////////////////////////////////
+
+          async function searchNote() {
+
+            const performsearch = document.getElementById('search').value;
+        
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('No authentication token found. Please sign in.');
+                return;
+            }
+
+
+            if (performsearch){
+                console.log('search result', performsearch)
+
+                try {
+                    const apiUrl = `https://eplan.edrive.ng/api/note/search-note/?q=${performsearch}`;
+                    const response = await axios.get(apiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+            
+                    if (response.status === 200) {
+                        notesData = response.data;
+                        console.log('notee', notesData); 
+                        displayNotes();
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    if (error.response && error.response.status === 401) {
+                        alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'signin.html';
+                    } else {
+                        alert('An error occurred while fetching data.');
+                    }
+                }
+
+
+              }else{
+                console.log('no Note available')
+              }
+        
+            
+        }
+        
+        function displayNotes() {
+            const cardsContainer = document.querySelector('.notes-container');
+            cardsContainer.innerHTML = '';
+        
+            if (!notesData || notesData.length === 0) {
+                cardsContainer.innerHTML = '<p>No notes found for your search.</p>';
+                return;
+            }
+        
+            notesData.forEach(note => {
+                const noteCard = document.createElement('div');
+                noteCard.className = 'note-card';
+                noteCard.innerHTML = `
+                    <h3 class="note-title">${note.title}</h3>
+                    <br></br>
+                  
+                `;
+                cardsContainer.appendChild(noteCard);
+            });
+        }
+        
+        
+    
+        ///////////////////////////////////////////////////////////
+        //  Note process
+        ////////////////////////////////////////////////////////////
+          
+       
+            let notesData = [];
+        
+            async function fetchData() {
+                const token = localStorage.getItem('accessToken');
+                if (!token) {
+                    alert('No authentication token found. Please sign in.');
+                    return;
+                }
+        
+                try {
+                    const apiUrl = 'https://eplan.edrive.ng/api/note/category/getnote/';
+        
+                    const response = await axios.get(apiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+        
+                    if (response.status === 200) {
+                        notesData = response.data.reverse();  
+                        displayNotes();
+                    }
+        
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    if (error.response && error.response.status === 401) {
+                        alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'signin.html';
+                    } else {
+                        alert('An error occurred while fetching data.');
+                    }
+                }
+            }
+        
+            function displayNotes() {
+                const cardsContainer = document.querySelector('.notes-container'); 
+                cardsContainer.innerHTML = '';  // Clear any existing content
+        
+                notesData.forEach(note => {
+                    // Create a card for each note
+                    const noteCard = document.createElement('div');
+                    noteCard.className = 'note-card';
+        
+                    noteCard.innerHTML = `
+                        <h3 class="note-title">${note.title}</h3>
+                        
+                           <p class="note-content">${note.description}</p>
+                        
+                        <p class="note-timestamp">${new Date(note.created_at).toLocaleDateString()} ${formatTime(note.created_at)}</p>
+                    `;
+        
+                    // Append each note card to the notes container
+                    cardsContainer.appendChild(noteCard);
+                });
+            }
+        
+            fetchData();  // Fetch data on page load
+
+
+            
+       
+        
+    </script>
+    <Script>
+        ///////////////////////////////////////////////////////////
+        //  Note image process
+        ////////////////////////////////////////////////////////////
+          
+       
+        let notesImageData = [];
+
+            async function fetchImageData() {
+                const token = localStorage.getItem('accessToken');
+                if (!token) {
+                    alert('No authentication token found. Please sign in.');
+                    return;
+                }
+
+                try {
+                    const apiUrl = 'https://eplan.edrive.ng/api/note/snapshot/getsnapshot/';
+
+                    const response = await axios.get(apiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.data.length > 0) {
+                        notesImageData = response.data.reverse();
+                    }
+                    
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    if (error.response && error.response.status === 401) {
+                        alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'signin.html';
+                    } else {
+                        alert('An error occurred while fetching data.');
+                    }
+                }
+   
+                displayNotesImage();
+            }
+
+            function displayNotesImage() {
+                const container = document.getElementById('imageContainer');
+                container.innerHTML = ''; // Clear the container
+
+                if (notesImageData.length === 0) {
+                    // Display fallback content
+                    container.innerHTML = `
+                        <div> 
+                            <div class="icon">
+                            <i class="fas fa-star"></i>
+                            </div>
+                            <p>Keep images, receipts, and records in one place.</p>
+                            <button style="cursor:pointer" onclick="showPopup()">Get started</button>
+                        </div>
+                    `;
+                } else {
+                
+                    
+                    notesImageData.forEach(note => {
+                        // Create link and image elements
+                        const linkElement = document.createElement('a');
+                        const imgElement = document.createElement('img');
+        
+                        linkElement.href = `https://eplan.edrive.ng${note.image}`;
+                        linkElement.target = '_blank'; // Opens the document/image in a new tab
+                        imgElement.src = `https://eplan.edrive.ng${note.image}`;
+                        imgElement.alt = note.image || "Document Image";
+                        imgElement.classList.add('note-image'); // Add class for styling
+            
+                        // Append image to link, then link to container
+                        linkElement.appendChild(imgElement);
+                        container.appendChild(linkElement);
+                    });
+                    console.log('Documents displayed successfully.');
+                }
+            }
+
+            // Fetch data and display images on page load
+            fetchImageData();
+
+        
+    </Script>
+    <Script>
+        ///////////////////////////////////////////////////////////
+        //  Note sketch process
+        ////////////////////////////////////////////////////////////
+          
+       
+        let notesSketchData = [];
+
+            async function fetchImageData() {
+                const token = localStorage.getItem('accessToken');
+                if (!token) {
+                    alert('No authentication token found. Please sign in.');
+                    return;
+                }
+
+                try {
+                    const apiUrl = 'https://eplan.edrive.ng/api/user/upload/sketch/get-sketch-image/';
+
+                    const response = await axios.get(apiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.data.length > 0) {
+                        notesSketchData = response.data.reverse();
+                    }
+                    
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    if (error.response && error.response.status === 401) {
+                        alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'signin.html';
+                    } else {
+                        alert('An error occurred while fetching data.');
+                    }
+                }
+
+                
+                displayNotesSketch();
+            }
+
+            function displayNotesSketch() {
+                const container = document.getElementById('sketchContainer');
+                container.innerHTML = ''; 
+
+                if (notesImageData.length === 0) {
+                    // Display fallback content
+                    container.innerHTML = `
+                        <div> 
+                            <div class="icon">
+                            <i class="fas fa-star"></i>
+                            </div>
+                            <p>Keep images, receipts, and records in one place.</p>
+                            <button style="cursor:pointer" onclick="showPopup()">Get started</button>
+                        </div>
+                    `;
+                } else {
+                    // Display images
+                    notesSketchData.forEach(note => {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = `https://eplan.edrive.ng${note.file}`;  
+                        imgElement.alt = note.description || 'Note image';
+                        imgElement.classList.add('note-image');
+                        container.appendChild(imgElement);
+                    });
+                }
+            }
+            fetchImageData();
+
+        
+    </Script>
+    
+    
+    <script>
+        let notesDocumentData = [];
+    
+        async function fetchDocumentData() {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('No authentication token found. Please sign in.');
+                return;
+            }
+    
+            try {
+                const apiUrl = 'https://eplan.edrive.ng/api/user/upload/get-document/';
+    
+                const response = await axios.get(apiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.data.length > 0) {
+                    notesDocumentData = response.data.reverse();
+                    console.log('Fetched Document Data:', notesDocumentData);  
+                }
+                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                if (error.response && error.response.status === 401) {
+                    alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'signin.html';
+                } else {
+                    alert('An error occurred while fetching data.');
+                }
+            }
+    
+            displayNotesDocument();
+        }
+    
+        function displayNotesDocument() {
+            const container = document.getElementById('documentContainer');
+            container.innerHTML = ''; // Clear the container
+    
+            if (notesDocumentData.length === 0) {
+                // Display fallback content
+                container.innerHTML = `
+                    <div> 
+                            <div class="icon">
+                            <i class="fas fa-star"></i>
+                            </div>
+                            <p style="text-align: center;align-self: center;align-items: center;">Keep images, receipts, and records in one place.</p>
+                            <button style="cursor:pointer" onclick="showPopup()">Get started</button>
+                        </div>
+                `;
+                console.log('No documents found. Displaying fallback content.');  // Debug log
+            } else {
+                // Display document list
+                notesDocumentData.forEach(note => {
+                    const listItem = document.createElement('p');
+                    listItem.innerHTML = `
+                        <a href="https://eplan.edrive.ng${note.file}" target="_blank">Document${note.file}</a>
+                    `;
+                    listItem.classList.add('note-document');
+                    container.appendChild(listItem);
+                });
+                console.log('Documents displayed successfully.'); 
+            }
+        }
+    
+        fetchDocumentData();
+    </script>
+
+    <script>
+        let notesAudioData = [];
+    
+        async function fetchAudioData() {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                alert('No authentication token found. Please sign in.');
+                return;
+            }
+    
+            try {
+                const apiUrl = 'https://eplan.edrive.ng/api/note/recent-captured/upload/audio-recording/get-recording/';
+    
+                const response = await axios.get(apiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.data.length > 0) {
+                    notesAudioData = response.data.reverse();
+                    console.log('Fetched Audio Data:', notesAudioData);  
+                }
+                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                if (error.response && error.response.status === 401) {
+                    alert('Unauthorized: Invalid or expired token. Please sign in again.');
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'signin.html';
+                } else {
+                    alert('An error occurred while fetching data.');
+                }
+            }
+    
+            displayNotesAudio();
+        }
+    
+        function displayNotesAudio() {
+            const container = document.getElementById('audioContainer');
+            container.innerHTML = ''; 
+    
+            if (notesAudioData.length === 0) {
+                // Display fallback content
+                container.innerHTML = `
+                    <div> 
+                        <div class="icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p style="text-align: center;align-self: center;align-items: center;">Keep images, receipts, and records in one place.</p>
+                        <button style="cursor:pointer" onclick="showPopup()">Get started</button>
+                    </div>
+                `;
+                console.log('No documents found. Displaying fallback content.');  // Debug log
+            } else {
+                // Display document list
+                notesAudioData.forEach(note => {
+                    const listItem = document.createElement('p');
+                    listItem.innerHTML = `
+                        <a href="https://eplan.edrive.ng${note.audio_file}" target="_blank">Audio${note.audio_file}</a>
+                    `;
+                    listItem.classList.add('note-document');
+                    container.appendChild(listItem);
+                });
+                console.log('Audio displayed successfully.'); 
+            }
+        }
+        fetchAudioData();
+    </script>
+    
+    <script>
+        ////////////////////////////////////////////////
+        // add note method
+        ////////////////////////////////////////////
+          // Open Modal
+          function openModal2() {
+            document.getElementById('modal-background').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeModal2() {
+            document.getElementById('modal-background').style.display = 'none';
+        }
+        // Open Modal
+        function openModal() {
+            document.getElementById('modal-background').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('modal-background').style.display = 'none';
+            
+        }
+        function closePopup() {
+            document.getElementById('successPopup').style.display = 'none';
+            window.location.href = 'note.html'; 
+        }
+
+
+        function showPopup() {
+            document.getElementById('successPopup').style.display = 'block';
+        }
+
+        // Add Task
+       async function addNote()  {
+            const noteTitle = document.getElementById('note-title').value;
+            const noteDescription = document.getElementById('note-description').value;
+            const notetype = document.getElementById('note-type').value;
+            
+           
+
+            if (!noteTitle || !noteDescription || !notetype) {
+               console.log('')
+               alert('All field are required')
+
+               
+                        
+            } else {
+
+                const noteData = {
+
+                    title: noteTitle,
+                    description: noteDescription,
+                    category:notetype,
+                    
+                };
+
+                try {
+
+                    const token = localStorage.getItem('accessToken');
+                    console.log('token:', token);
+                    const response = await axios.post('https://eplan.edrive.ng/api/createNote/', noteData, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+    
+                    if (response.status === 201) {
+                        alert('Note successfully created');
+                        window.location.href = 'note.html';
+                    } else {
+                        alert('Failed to create note. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error creating note:', error);
+                    
+                }
+
+                closeModal();
+            }
+        }
+    </script>
+</html>

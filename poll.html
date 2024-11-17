@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Poll</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #166534;
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            max-width: 100%;
+        }
+
+        .header .close {
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
+        }
+
+        /* Navigation Styling */
+        .nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            background-color: #ffffff;
+        }
+
+        .nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        .nav .settings {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: #1b4332;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+
+        /* Container Styling */
+        .container {
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 30px;
+            padding-bottom: 150px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .container input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom-color: #166534;
+            border-bottom-style: solid;
+            border-bottom-width: 2px;
+            font-size: 15px;
+            color: #b1b0b0;
+        }
+
+        /* Option Input Styling */
+        .container .options input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-bottom-color: #166534;
+            border-bottom-style: solid;
+            border-bottom-width: 2px;
+            margin-bottom: 30px;
+            
+            font-size: 15px;
+            color: #b1b0b0;
+        }
+
+        /* Toggle Button Styling */
+        .container .toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            align-self: self-end;
+        }
+
+        .container .toggle label {
+            font-size: 16px;
+            margin-right: 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .container .toggle input[type="checkbox"] {
+            width: 40px;
+            height: 20px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #ccc;
+            outline: none;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .container .toggle input[type="checkbox"]:checked {
+            background-color: #166534;
+        }
+
+        .container .toggle input[type="checkbox"]:before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            top: 1px;
+            left: 1px;
+            transition: 0.2s;
+        }
+
+        .container .toggle input[type="checkbox"]:checked:before {
+            transform: translateX(20px);
+        }
+
+        /* Button Styling */
+        .container .done-btn {
+            background-color: #166534;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            right: 40px;
+        }
+        .container .done-btn:hover {
+            background-color: #109141;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            right: 40px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: black;
+            color: white;
+           
+            align-items: center;
+            align-self: center;
+        }
+        footer .container {
+            display: flex;
+           align-self: center;
+           justify-content: center;
+           align-items: center;
+           padding: 40px;
+          
+        }
+        footer nav a {
+            color: white;
+            margin-right: 16px;
+            text-decoration: none; 
+        
+        }
+        footer nav a:hover {
+            text-decoration: underline;
+
+        }
+        .footerTerms{
+            background-color: black;
+            border-top-color: #999;
+            border-top-width: 0.6px;
+            border-top-style: solid;
+            justify-content: flex-end;
+            padding: 10px;
+            text-align: end;
+        }
+
+        /* Header Navigation Styling */
+        header {
+            background-color: white;
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+        }
+
+        header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+
+        header nav a:hover {
+            background-color: #166534;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        header button {
+            background-color: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: medium;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="home.html">Home/Schedule</a>
+                <a href="note.html">Note</a>
+                <a href="to-do-list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+            </nav>
+            <div style="margin-left: 200px;">
+                <a href="settings.html"><button>Settings</button></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="header">
+        <a href="settings.html"><span class="close">&times;</span></a>
+        <h1>Create Poll</h1>
+    </div>
+
+    <div class="container">
+        <h2>Question</h2>
+        <div style="display: flex;flex-direction: row; align-items: center;">
+            <input type="text" id="questionInput" placeholder="Ask Question">
+        <!-- Voice recognition -->
+        <div id="recorfdBtn"><i style="font-size: 30px; background-color: #ffffff; color: #929292; margin: 10px;margin-top: -6px;" class="fas fa-microphone" id="recosrdIcon"></i></div>
+        </div>
+        <div id="output"></div>
+
+        <h2>Options</h2>
+        <div class="options">
+            <input type="text" id="option" placeholder="Add Option 1" class="optionInput" required>
+            <input type="text" id="option2" placeholder="Add Option 2" class="optionInput" required>
+        </div>
+
+        <div style="align-self: center;align-items: center;justify-self: end; margin-top: 50px; margin-bottom: 20px;" class="toggle">
+            <label>Allow multiple answers</label>
+            <input type="checkbox" id="multipleAnswers">
+        </div>
+
+        <button class="done-btn" id="createPollBtn">Done</button>
+    </div>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="home.html">HOME</a>
+                <a href="note.html">Note</a>
+                <a href="to do list.html">To Do List</a>
+                <a href="connect.html">Connect</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+           
+        </div>
+        <div class="footerTerms">
+            <span>Terms & Condition</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('createPollBtn').addEventListener('click', async function () {
+            const question = document.getElementById('questionInput').value;
+            const option = document.getElementById('option').value;
+            const option2 = document.getElementById('option2').value;
+
+            // Validation logic
+            let isValid = true;
+
+            if (!question) {
+                alert('Please enter a question.');
+                isValid = false;
+            }
+            if (!option) {
+                alert('Please enter an option.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                const pollData = {
+                    p_question: question,
+                    p_option1: option,
+                    p_option2: option2,
+                };
+
+                try {
+                    const token = localStorage.getItem('accessToken');
+                    const response = await axios.post('https://eplan.edrive.ng/api/createpoll/', pollData, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+
+                    if (response.status === 201) {
+                        alert('Poll created successfully!');
+                        window.location.href = 'home.html';
+                    } else {
+                        alert('Failed to create poll. Please try again.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('An error occurred while creating the poll,complet all the field and try again');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
