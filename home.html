@@ -29,7 +29,7 @@
             margin-right: 16px;
             font-size: 20px;
             text-decoration: none;
-            font-family: Georgia, 'Times New Roman', Times, serif;
+        
         }
         header nav a:hover {
             background-color: #166534;
@@ -554,7 +554,7 @@ footer {
         
       
         .banner h1{
-            font-family: Georgia, 'Times New Roman', Times, serif;
+            
             font-size: 50px;
             color: #ffffff;
             position: relative; top: 25%; margin-left: 40px;
@@ -781,6 +781,7 @@ footer {
                 <a href="connect.html">Connect</a>
                 <a href="settings.html">Settings</a>
             </nav>
+            
            
         </div>
         <div class="footerTerms">
@@ -1008,7 +1009,30 @@ fetch('https://eplan.edrive.ng/api/cookies/')
         console.error('Fetch error:', error);
     });
 
-// Later in your code, use the global `csrftoken` variable in your `axios` request
+    // Function to show desktop notification
+function showNotification(title, message) {
+  // Check if browser supports notifications
+  if ("Notification" in window) {
+    // Request notification permission if not already granted
+    if (Notification.permission === "granted") {
+      new Notification(title, { body: message });
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          new Notification(title, { body: message });
+        }
+      });
+    }
+  } else {
+    console.error("Browser does not support desktop notifications.");
+  }
+}
+
+
+
+
+
+
 async function updateMeeting() {
     if (selectedMeetingId) {
         console.log('Meeting ID:', selectedMeetingId);
@@ -1065,6 +1089,7 @@ async function updateMeeting() {
 
                 if (response.status === 200) {
                     showPopup2();
+                    showNotification("Schedule Manager", "Schedule was successfully created!");
                 } else {
                     console.error('Unexpected Response:', response);
                     alert('Failed to update meeting. Please try again.');
