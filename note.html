@@ -181,12 +181,12 @@
 }
 
 /* For better scrolling on touch devices */
-@media (pointer: coarse) {
+/* @media (pointer: coarse) {
     .notes-container {
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
     }
-}
+} */
         .recently-captured {
             background-color: rgb(255, 255, 255);
             padding: 1.5rem;
@@ -385,7 +385,7 @@
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            width: 500px;
+            
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -524,6 +524,114 @@
             position: relative; top: 45%; margin-left: 40px;
             
         }
+         /* Media Queries */
+         @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .container-search{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-self: center;
+                align-items: center;
+            }
+            .search-icondetail{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+            .recently-captured{
+                background-color: #e0dede;
+                padding: -10px;
+                margin: -10px;
+            }
+
+            .tab-bar button {
+                font-size: 12px;
+                padding: 8px;
+            }
+            header nav a {
+                font-size: 20px;
+            }
+            .containeer{
+               
+                background-color: #ffffff;
+            }
+            .tab-bar{
+                display: flex;
+                flex-direction: column;
+                
+            }
+            #documentContainer{
+                display: flex;
+                flex-direction: column;
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                background-color: #ffffff;
+            }
+
+            /* #successPopup{
+                
+                
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+            }
+            */
+          
+            /* .imagepop{
+                padding: 600px;
+                
+            } */
+           
+            /* .imagepop{
+                width: 10px;
+                height: 10px;
+                padding-right: 90px;
+                padding-left: 90px;
+            } */
+            
+            
+            
+        }
+
+        @media (max-width: 480px) {
+
+          
+            
+           
+            .fab {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            .container-search{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-self: center;
+                align-items: center;
+            }
+            .search-icondetail{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .imagepop{
+            width: 300px;
+           
+            height: 200px;
+        }
         
     </style>
 </head>
@@ -551,11 +659,11 @@
     </section>
 
     <!-- Search Bar -->
-    <div class="container">
+    <div class="container-search">
         <div style="display: flex; flex-direction: row; align-items: center; " class="search-bar">
             <input type="text" id="search" name="search" placeholder="Search">
             <button class="searchtext" onclick="searchNote()"><i class="fas fa-search"></i> Search</button>
-            <div style="margin-left: 20px;">
+            <div class="search-icondetail" style="margin-left: 20px;">
                 <i style="color: #166534; font-size: 25;" class="fas fa-tags "></i>
             <i style="color: #166534; font-size: 25; margin-left: 20px;" class="fas fa-calendar-alt "></i>
             </div>
@@ -649,7 +757,7 @@
       <!----------------- Success Popup Alert ---------->
       <div id="successPopup" class="popup-overlay">
         <div class="popup-content">
-            <img style="width: 500;height:300" src="./images/eplan.jpg" alt="Desk workspace background image">
+            <img class="imagepop" src="./images/eplan.jpg" alt="Desk workspace background image">
             <h4>Access all your recent captures—images, documents, and more—on the go! For the best experience, switch to our mobile app. Download now to keep everything at your fingertips!</h4>
             
 

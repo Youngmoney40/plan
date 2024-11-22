@@ -248,6 +248,76 @@
             cursor: pointer;
             font-size: medium;
         }
+        @media (max-width: 768px) {
+            header nav a {
+            color: #4a5568;
+            margin-right: 16px;
+            text-decoration: none;
+            
+            font-size: 20px;
+           margin-left: 10px;
+        }
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .done-btn {
+                right: 20px; /* Adjust button positioning */
+               
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            footer nav {
+                flex-direction: column; /* Stack links vertically */
+            }
+        }
+
+@media (max-width: 768px) {
+    .header {
+        padding: 50px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .nav a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+
+    .container input[type="text"], 
+    .container .done-btn{
+       
+        margin-top: -60px;
+    }
+    .toggle{
+        align-self: flex-start;
+        align-items: self-start;
+    }
+  
+
+    
+
+    footer nav {
+        flex-direction: column;
+        align-items: center;
+      
+    }
+}
+
     </style>
 </head>
 
@@ -257,10 +327,10 @@
             <nav>
                 <a href="home.html">Home/Schedule</a>
                 <a href="note.html">Note</a>
-                <a href="to-do-list.html">To Do List</a>
+                <a href="to do list.html">To Do List</a>
                 <a href="connect.html">Connect</a>
             </nav>
-            <div style="margin-left: 200px;">
+            <div style="margin-left: 0px;">
                 <a href="settings.html"><button>Settings</button></a>
             </div>
         </div>
@@ -286,7 +356,7 @@
             <input type="text" id="option2" placeholder="Add Option 2" class="optionInput" required>
         </div>
 
-        <div style="align-self: center;align-items: center;justify-self: end; margin-top: 50px; margin-bottom: 20px;" class="toggle">
+        <div style="align-self: center;align-items: center; margin-top: 50px; margin-bottom: 20px;" class="toggle">
             <label>Allow multiple answers</label>
             <input type="checkbox" id="multipleAnswers">
         </div>

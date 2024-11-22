@@ -561,6 +561,40 @@ footer {
             
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timezone-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .search-bar input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .add-button button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+        }
+
 
     </style>
 </head>
@@ -572,7 +606,7 @@ footer {
                 <a href="note.html">Note</a>
                 <a href="to do list.html">To Do List</a>
                 <a href="connect.html">Connect</a>
-                <a href="signin.html">
+                <a href="index.html">
                    <img src="images/images.png" width="20" height="20">   Sign Out</a>
                
             </nav>
@@ -1070,7 +1104,7 @@ async function updateMeeting() {
                     additionalinfo: handleNull(description),
                 });
 
-                const response = await axios.put(`https://eplan.edrive.ng/api/meeting/${selectedMeetingId}/`, {
+                const response = await axios.put(`https://eplan.edrive.ng/api/reschedulemeeting/${selectedMeetingId}/`, {
                     meetingname: meetingTitle,
                     starttime: startTime,
                     endtime: endTime,

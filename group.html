@@ -24,14 +24,13 @@
         header .container {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between; /* Adjusted for spacing */
             padding: 16px 24px;
         }
         header nav a {
             color: #4a5568;
             margin-right: 16px;
             text-decoration: none;
-            
             font-size: 20px;
         }
         header nav a:hover {
@@ -60,15 +59,14 @@
         }
         .header .close {
             position: absolute;
-            left: 50px;
-            top: 40px;
+            left: 20px; /* Adjusted for better responsiveness */
+            top: 20px; /* Adjusted for better responsiveness */
             font-size: 40px;
             cursor: pointer;
         }
         .header h1 {
             margin: 0;
             font-size: 36px;
-            
         }
 
         /* Content Section */
@@ -76,8 +74,8 @@
             padding: 20px;
             text-align: center;
             flex: 1;
-            padding-left: 150px;
-            padding-right: 150px;
+            padding-left: 5%; /* Adjusted for better responsiveness */
+            padding-right: 5%; /* Adjusted for better responsiveness */
         }
 
         /* Group Name Section */
@@ -86,6 +84,7 @@
             align-items: center;
             justify-content: center;
             margin: 20px 0;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
         .question-section .profile-pic {
             width: 130px;
@@ -100,7 +99,7 @@
             border: none;
             border-bottom: 2px solid #166534;
             font-size: 18px;
-
+            min-width: 250px; /* Minimum width for input */
         }
         .question-section .mic {
             margin-left: 20px;
@@ -119,7 +118,6 @@
         }
         .permissions .title {
             font-size: 18px;
-        
         }
         .permissions .settings-icon {
             font-size: 24px;
@@ -131,11 +129,12 @@
             display: flex;
             align-items: center;
             margin: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
         .add-member .add-icon {
             width: 70px;
             height: 70px;
-            background-color: #4d4d4d;
+            background-color: #4d4d 4d;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -149,6 +148,7 @@
             padding: 10px;
             border: none;
             font-size: 16px;
+            min-width: 250px; /* Minimum width for input */
         }
         #search-results {
             position: absolute;
@@ -157,9 +157,8 @@
             max-height: 200px;
             overflow-y: auto;
             z-index: 100;
-            width: 500px;
+            width: 100%; /* Full width for responsiveness */
             margin-top: 20px;
-
         }
         #selected-members-list li {
             background-color: #166534;
@@ -190,11 +189,9 @@
             justify-content: center;
             font-size: 24px;
             margin: 20px auto;
-            margin-bottom: 20px;
-            left: 500px;
             cursor: pointer;
         }
-        .submit:hover{
+        .submit:hover {
             background-color: #23a354;
         }
 
@@ -205,29 +202,77 @@
             text-align: center;
             padding-top: 40px;
             padding-bottom: 20px;
-           
-            
         }
         footer nav a {
             color: white;
             margin-right: 16px;
             text-decoration: none;
-            
-            
         }
         footer nav a:hover {
             text-decoration: underline;
         }
-        .footerTerms{
-        background-color: black;
-        border-top-color: #999;
-        border-top-width: 0.6px;
-        border-top-style: solid;
-        justify-content: flex-end;
-        padding: 10px;
-        text-align: end;
-        margin-top: 30px;
-}
+        .footerTerms {
+            background-color: black;
+            border-top-color: #999;
+            border-top-width: 0.6px;
+            border-top-style: solid;
+            justify-content: flex-end;
+            padding: 10px;
+            text-align: end;
+            margin-top: 30px;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start; /* Align items to start */
+            }
+            .content {
+                padding-left: 10%; /* Adjust padding for smaller screens */
+                padding-right: 10%; /* Adjust padding for smaller screens */
+            }
+            .question-section {
+                flex-direction: column; /* Stack elements vertically */
+                align-items: center; /* Center elements */
+            }
+            .question-section .profile-pic {
+                margin-bottom: 10px; /* Add margin for spacing */
+            }
+            .add-member {
+                flex-direction: column; /* Stack elements vertically */
+                align-items: center; /* Center elements */
+            }
+            .submit {
+                width: 60px; /* Adjust button size */
+                height: 60px; /* Adjust button size */
+            }
+            .mic{
+                visibility: hidden;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px; /* Reduce header padding */
+            }
+            .header h1 {
+                font-size: 28px; /* Reduce font size */
+            }
+            .question-section input {
+                font-size: 16px; /* Adjust font size */
+            }
+            .permissions, .add-member {
+                flex-direction: column; /* Stack elements vertically */
+                align-items: flex-start; /* Align items to start */
+            }
+            .permissions .title, .permissions .settings-icon {
+                font-size: 16px; /* Adjust font size */
+            }
+            .mic{
+                visibility: hidden;
+            }
+        }
     </style>
 </head>
 <body>
@@ -261,7 +306,7 @@
         <!-- Add Members -->
         <div class="add-member">
             <div class="add-icon"><i class="fas fa-plus"></i></div>
-            <input type="text" id="add-member" placeholder="Input member name to add" required>
+            <input class="inputaddmember" type="text" id="add-member" placeholder="Input member name to add" required>
             <ul id="selected-members-list" style="list-style-type: none;"></ul>
             <div id="search-results" style="display: none;"></div>
         </div>

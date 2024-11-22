@@ -241,10 +241,10 @@
         }
         header nav a {
             color: #4a5568;
-            margin-right: 16px;
+           
             text-decoration: none;
            
-            font-size: 20px;
+            font-size: 25px;
         }
         header nav a:hover {
             background-color: #166534;
@@ -261,6 +261,56 @@
             cursor: pointer;
             font-size: 16px;
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header nav a {
+            color: #4a5568;
+            
+            text-decoration: none;
+           
+            font-size: 30px;
+        }
+            .navbar {
+                flex-direction: column; /* Stack navbar items */
+                align-items: flex-start; /* Align items to start */
+            }
+            .content {
+                margin: 0 5%; /* Reduced margins for smaller screens */
+            }
+            .card {
+                flex-direction: column; /* Stack card elements */
+                align-items: center; /* Center elements */
+            }
+            .card img {
+                width: 30px; /* Reduce image size */
+                height: 30px;
+            }
+            .fab {
+                bottom: 1rem; /* Adjust fab position */
+                right: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .header {
+                padding: 50px 0; /* Reduce header padding */
+            }
+            .content {
+                margin: 0 2%; /* Further reduce margins */
+            }
+            .card {
+                padding: 10px; /* Reduce card padding */
+            }
+            .card img {
+                width: 20px; /* Further reduce image size */
+                height: 20px;
+            }
+        }
+
+       
+       
+   
+         
     
   </style>
  </head>
@@ -409,7 +459,7 @@
 
         // Create and append the image
         const img = document.createElement('img');
-        img.src = group.image || 'images/profile.png'; // Use group image or default
+        img.src = group.profile_picture || 'images/profile.png'; // Use group image or default
         img.alt = 'Profile image';
         cardHeader.appendChild(img);
         
